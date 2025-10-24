@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GTM Test Lab</title>
+  <!-- ✅ 1) ここをあなたのGTMコンテナIDに差し替え（例: GTM-ABC1234） -->
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T5LSFMCF');
+  </script>
+  <!-- End Google Tag Manager -->
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Hiragino Kaku Gothic ProN","Meiryo",sans-serif;margin:0;padding:0;line-height:1.6;background:#0b1220;color:#e7ecf3}
+    header,section,footer{max-width:960px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:#0f172a;border-bottom:1px solid #1f2a44;z-index:10}
+    .row{display:flex;gap:16px;flex-wrap:wrap}
+    .card{background:#111b30;border:1px solid #1f2a44;border-radius:16px;padding:16px;flex:1;min-width:260px}
+    button,a.btn{display:inline-block;border-radius:12px;padding:10px 16px;border:1px solid #2b3a5d;background:#1b2b4b;color:#e7ecf3;text-decoration:none;cursor:pointer}
+    button:hover,a.btn:hover{filter:brightness(1.15)}
+    code,pre{background:#0f172a;border:1px solid #1f2a44;border-radius:8px;padding:8px;display:block;overflow:auto}
+    .spacer{height:1200px;background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0));border-radius:16px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #2b3a5d;background:#0f172a;color:#e7ecf3}
+    label{display:block;margin:8px 0 4px}
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5LSFMCF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header>
+    <h1>GTM Test Lab（学習用デモページ）</h1>
+    <p>各要素は <code>Click</code> / <code>Form Submit</code> / <code>Scroll</code> / <code>YouTube</code> / <code>Timer</code> / <code>dataLayer.push()</code> を試すために用意しています。</p>
+  </header>
+
+  <section class="row">
+    <div class="card">
+      <h2>1) CTA ボタン（クリック計測）</h2>
+      <p>このボタンは ID と data 属性を持っています。GTM の「クリック - すべての要素」や「リンクのみ」トリガで条件を作ってみましょう。</p>
+      <button id="btn-cta" class="btn" data-cta="signup">無料で始める</button>
+      <button id="btn-add-to-cart" class="btn" data-sku="SKU-123">カートに入れる</button>
+      <p>
+        <a id="outbound-link" class="btn" href="https://example.com/" target="_blank" rel="noopener">外部サイトへ</a>
+        <a id="mailto-link" class="btn" href="mailto:info@example.com">メールで問い合わせ</a>
+        <a id="tel-link" class="btn" href="tel:+819012345678">電話する</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>2) 入力フォーム（送信計測）</h2>
+      <form id="newsletter-form">
+        <label for="name">お名前</label>
+        <input id="name" name="name" required />
+        <label for="email">メール</label>
+        <input id="email" name="email" type="email" required />
+        <button type="submit" class="btn">登録する</button>
+      </form>
+      <p>GTM の「フォーム送信」トリガ、あるいは <code>gtm.formSubmit</code> イベントや <code>submit</code> でカスタムトリガを作成して動きを確認します。</p>
+    </div>
+
+    <div class="card">
+      <h2>3) YouTube 埋め込み（動画計測）</h2>
+      <p>GTM の YouTube 動画トリガは <code>enablejsapi=1</code> が必要です。</p>
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;border:1px solid #1f2a44">
+        <iframe id="ytplayer" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" title="YouTube video" 
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="card">
+      <h2>4) スクロール計測 & タイマー</h2>
+      <p>下にダミーの長文エリアがあるので、GTM の「スクロール距離」や「タイマー」トリガを設定して発火を確認してください。</p>
+      <div class="spacer"></div>
+    </div>
+
+    <div class="card">
+      <h2>5) dataLayer.push() 実験</h2>
+      <p>ボタンを押すとカスタムイベントや EC 風のデータを <code>dataLayer</code> に送ります。GTM で「カスタムイベント」トリガを作成して拾ってください。</p>
+      <div class="row">
+        <button class="btn" onclick="dlCustom('lead_submit')">lead_submit を push</button>
+        <button class="btn" onclick="dlAddToCart()">add_to_cart を push</button>
+        <button class="btn" onclick="dlPurchase()">purchase を push</button>
+      </div>
+      <pre><code>dataLayer.push({
+  event: 'lead_submit',
+  lead_source: 'header_cta',
+});
+
+// GA4 e-commerce like examples
+// add_to_cart / purchase など
+</code></pre>
+    </div>
+  </section>
+
+  <footer>
+    <p>© GTM Test Lab</p>
+  </footer>
+
+  <script>
+    // ---- dataLayer helpers ----
+    window.dataLayer = window.dataLayer || [];
+
+    function dlCustom(evt){
+      dataLayer.push({ event: evt, timestamp: Date.now() });
+      alert('pushed: ' + evt);
+    }
+
+    function dlAddToCart(){
+      dataLayer.push({
+        event: 'add_to_cart',
+        ecommerce: {
+          currency: 'JPY',
+          value: 1980,
+          items: [{
+            item_id: 'SKU-123',
+            item_name: 'GTM学習テキスト',
+            price: 1980,
+            quantity: 1
+          }]
+        }
+      });
+      alert('pushed: add_to_cart');
+    }
+
+    function dlPurchase(){
+      const orderId = 'ORDER-' + Math.floor(Math.random()*1000000);
+      dataLayer.push({
+        event: 'purchase',
+        ecommerce: {
+          transaction_id: orderId,
+          currency: 'JPY',
+          value: 1980,
+          tax: 180,
+          shipping: 0,
+          items: [{
+            item_id: 'SKU-123',
+            item_name: 'GTM学習テキスト',
+            price: 1980,
+            quantity: 1
+          }]
+        }
+      });
+      alert('pushed: purchase ' + orderId);
+    }
+
+    // ---- demo: intercept form submit to keep page static ----
+    document.getElementById('newsletter-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      // 送信時に dataLayer へも流す
+      dataLayer.push({
+        event: 'newsletter_submit',
+        form: {
+          id: 'newsletter-form'
+        }
+      });
+      alert('フォーム送信（疑似）。dataLayer に newsletter_submit を push 済み');
+    });
+
+    // demo: add extra click dataLayer for CTA buttons
+    document.getElementById('btn-cta').addEventListener('click', function(){
+      dataLayer.push({ event: 'cta_click', cta_id: 'btn-cta', cta_label: '無料で始める' });
+    });
+    document.getElementById('btn-add-to-cart').addEventListener('click', function(){
+      dataLayer.push({ event: 'cta_click', cta_id: 'btn-add-to-cart', cta_label: 'カートに入れる' });
+    });
+  </script>
+</body>
+</html>
